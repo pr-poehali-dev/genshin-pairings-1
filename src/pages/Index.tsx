@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { pairings, Pairing } from '@/data/pairings';
 import { PairingCard } from '@/components/PairingCard';
 import { PairingModal } from '@/components/PairingModal';
@@ -89,97 +90,154 @@ const Index = () => {
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="all" className="animate-fade-in">
-            <div className="mb-6">
-              <h2 className="text-2xl font-semibold mb-2">Все пейринги</h2>
-              <p className="text-muted-foreground">Полный каталог всех пейрингов</p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {allPairings.map((pairing) => (
-                <PairingCard
-                  key={pairing.id}
-                  pairing={pairing}
-                  onClick={() => handlePairingClick(pairing)}
-                />
-              ))}
-            </div>
+          <TabsContent value="all">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="mb-6">
+                <h2 className="text-2xl font-semibold mb-2">Все пейринги</h2>
+                <p className="text-muted-foreground">Полный каталог всех пейрингов</p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <AnimatePresence mode="popLayout">
+                  {allPairings.map((pairing, index) => (
+                    <motion.div
+                      key={pairing.id}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.9 }}
+                      transition={{ duration: 0.2, delay: index * 0.05 }}
+                    >
+                      <PairingCard
+                        pairing={pairing}
+                        onClick={() => handlePairingClick(pairing)}
+                      />
+                    </motion.div>
+                  ))}
+                </AnimatePresence>
+              </div>
+            </motion.div>
           </TabsContent>
 
-          <TabsContent value="popular" className="animate-fade-in">
-            <div className="mb-6">
-              <h2 className="text-2xl font-semibold mb-2 flex items-center gap-2">
-                <Icon name="Flame" size={28} className="text-primary" />
-                Популярные пейринги
-              </h2>
-              <p className="text-muted-foreground">
-                Самые любимые пейринги фандома с популярностью 70%+
-              </p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {popularPairings.map((pairing) => (
-                <PairingCard
-                  key={pairing.id}
-                  pairing={pairing}
-                  onClick={() => handlePairingClick(pairing)}
-                />
-              ))}
-            </div>
+          <TabsContent value="popular">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="mb-6">
+                <h2 className="text-2xl font-semibold mb-2 flex items-center gap-2">
+                  <Icon name="Flame" size={28} className="text-primary" />
+                  Популярные пейринги
+                </h2>
+                <p className="text-muted-foreground">
+                  Самые любимые пейринги фандома с популярностью 70%+
+                </p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <AnimatePresence mode="popLayout">
+                  {popularPairings.map((pairing, index) => (
+                    <motion.div
+                      key={pairing.id}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.9 }}
+                      transition={{ duration: 0.2, delay: index * 0.05 }}
+                    >
+                      <PairingCard
+                        pairing={pairing}
+                        onClick={() => handlePairingClick(pairing)}
+                      />
+                    </motion.div>
+                  ))}
+                </AnimatePresence>
+              </div>
+            </motion.div>
           </TabsContent>
 
-          <TabsContent value="forgotten" className="animate-fade-in">
-            <div className="mb-6">
-              <h2 className="text-2xl font-semibold mb-2 flex items-center gap-2">
-                <Icon name="Ghost" size={28} className="text-muted-foreground" />
-                Забытые пейринги
-              </h2>
-              <p className="text-muted-foreground">
-                Редкие пейринги, которые заслуживают больше внимания
-              </p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {forgottenPairings.map((pairing) => (
-                <PairingCard
-                  key={pairing.id}
-                  pairing={pairing}
-                  onClick={() => handlePairingClick(pairing)}
-                />
-              ))}
-            </div>
+          <TabsContent value="forgotten">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="mb-6">
+                <h2 className="text-2xl font-semibold mb-2 flex items-center gap-2">
+                  <Icon name="Ghost" size={28} className="text-muted-foreground" />
+                  Забытые пейринги
+                </h2>
+                <p className="text-muted-foreground">
+                  Редкие пейринги, которые заслуживают больше внимания
+                </p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <AnimatePresence mode="popLayout">
+                  {forgottenPairings.map((pairing, index) => (
+                    <motion.div
+                      key={pairing.id}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.9 }}
+                      transition={{ duration: 0.2, delay: index * 0.05 }}
+                    >
+                      <PairingCard
+                        pairing={pairing}
+                        onClick={() => handlePairingClick(pairing)}
+                      />
+                    </motion.div>
+                  ))}
+                </AnimatePresence>
+              </div>
+            </motion.div>
           </TabsContent>
 
-          <TabsContent value="rating" className="animate-fade-in">
-            <div className="mb-6">
-              <h2 className="text-2xl font-semibold mb-2 flex items-center gap-2">
-                <Icon name="Trophy" size={28} className="text-primary" />
-                Рейтинг популярности
-              </h2>
-              <p className="text-muted-foreground">
-                Все пейринги отсортированы по убыванию популярности
-              </p>
-            </div>
-            <div className="space-y-3">
-              {allPairings.map((pairing, index) => (
-                <div
-                  key={pairing.id}
-                  className="flex items-center gap-4 p-4 bg-card border border-border rounded-lg cursor-pointer transition-all hover:shadow-md hover:border-primary/50"
-                  onClick={() => handlePairingClick(pairing)}
-                >
-                  <div className="flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 flex-shrink-0">
-                    <span className="text-lg font-bold text-primary">#{index + 1}</span>
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="font-semibold text-foreground">{pairing.name}</h3>
-                    <p className="text-sm text-muted-foreground">
-                      {pairing.characters.join(' × ')}
-                    </p>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Icon name="Heart" size={20} className="text-primary" />
-                    <span className="text-lg font-bold text-primary">{pairing.popularity}%</span>
-                  </div>
-                </div>
-              ))}
-            </div>
+          <TabsContent value="rating">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="mb-6">
+                <h2 className="text-2xl font-semibold mb-2 flex items-center gap-2">
+                  <Icon name="Trophy" size={28} className="text-primary" />
+                  Рейтинг популярности
+                </h2>
+                <p className="text-muted-foreground">
+                  Все пейринги отсортированы по убыванию популярности
+                </p>
+              </div>
+              <div className="space-y-3">
+                <AnimatePresence mode="popLayout">
+                  {allPairings.map((pairing, index) => (
+                    <motion.div
+                      key={pairing.id}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -20 }}
+                      transition={{ duration: 0.2, delay: index * 0.03 }}
+                      className="flex items-center gap-4 p-4 bg-card border border-border rounded-lg cursor-pointer transition-all hover:shadow-md hover:border-primary/50"
+                      onClick={() => handlePairingClick(pairing)}
+                    >
+                      <div className="flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 flex-shrink-0">
+                        <span className="text-lg font-bold text-primary">#{index + 1}</span>
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="font-semibold text-foreground">{pairing.name}</h3>
+                        <p className="text-sm text-muted-foreground">
+                          {pairing.characters.join(' × ')}
+                        </p>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Icon name="Heart" size={20} className="text-primary" />
+                        <span className="text-lg font-bold text-primary">{pairing.popularity}%</span>
+                      </div>
+                    </motion.div>
+                  ))}
+                </AnimatePresence>
+              </div>
+            </motion.div>
           </TabsContent>
         </Tabs>
       </main>
