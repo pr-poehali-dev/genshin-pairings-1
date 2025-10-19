@@ -1,28 +1,40 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { pairings, Pairing } from '@/data/pairings';
 import { PairingCard } from '@/components/PairingCard';
 import { PairingModal } from '@/components/PairingModal';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Input } from '@/components/ui/input';
 import Icon from '@/components/ui/icon';
 
 const Index = () => {
   const [selectedPairing, setSelectedPairing] = useState<Pairing | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const handlePairingClick = (pairing: Pairing) => {
     setSelectedPairing(pairing);
     setModalOpen(true);
   };
 
-  const popularPairings = pairings
+  const filteredPairings = useMemo(() => {
+    if (!searchQuery.trim()) return pairings;
+    
+    const query = searchQuery.toLowerCase();
+    return pairings.filter(p => 
+      p.name.toLowerCase().includes(query) ||
+      p.characters.some(char => char.toLowerCase().includes(query))
+    );
+  }, [searchQuery]);
+
+  const popularPairings = filteredPairings
     .filter(p => p.category === 'popular')
     .sort((a, b) => b.popularity - a.popularity);
 
-  const forgottenPairings = pairings
+  const forgottenPairings = filteredPairings
     .filter(p => p.category === 'forgotten')
     .sort((a, b) => a.popularity - b.popularity);
 
-  const allPairings = [...pairings].sort((a, b) => b.popularity - a.popularity);
+  const allPairings = [...filteredPairings].sort((a, b) => b.popularity - a.popularity);
 
   return (
     <div className="min-h-screen bg-background">
@@ -32,9 +44,27 @@ const Index = () => {
             <Icon name="Heart" size={32} className="text-primary" />
             <h1 className="text-3xl font-bold text-foreground">Genshin Pairings</h1>
           </div>
-          <p className="text-muted-foreground">
+          <p className="text-muted-foreground mb-4">
             Каталог пейрингов от самых популярных до самых забытых
           </p>
+          <div className="relative max-w-md">
+            <Icon name="Search" size={20} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+            <Input
+              type="text"
+              placeholder="Поиск по названию или персонажу..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pl-10 pr-10"
+            />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery('')}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <Icon name="X" size={18} />
+              </button>
+            )}
+          </div>
         </div>
       </header>
 

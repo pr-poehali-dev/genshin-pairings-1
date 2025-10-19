@@ -6,6 +6,7 @@ export interface Pairing {
   description: string;
   reasons: string[];
   category: 'popular' | 'forgotten' | 'medium';
+  image: string;
 }
 
 export const pairings: Pairing[] = [
@@ -16,6 +17,7 @@ export const pairings: Pairing[] = [
     popularity: 95,
     category: 'popular',
     description: 'Один из самых популярных пейрингов в фандоме Genshin Impact.',
+    image: 'https://cdn.poehali.dev/projects/ab2cfd1e-fa31-425a-bb3b-74822950e4cd/files/45f1f579-db4e-45cb-8aec-5321c0cd7c84.jpg',
     reasons: [
       'Противоположности притягиваются: холодный расчётливый Кэйа и спокойный учёный Альбедо',
       'Множество взаимодействий в квестах и ивентах',
@@ -30,6 +32,7 @@ export const pairings: Pairing[] = [
     popularity: 92,
     category: 'popular',
     description: 'Архонт и Предвестник — классический enemies-to-lovers троп.',
+    image: 'https://cdn.poehali.dev/projects/ab2cfd1e-fa31-425a-bb3b-74822950e4cd/files/e5c341c3-c023-4169-98af-fe3e0320857c.jpg',
     reasons: [
       'Динамика "враги → союзники → что-то большее"',
       'Контраст между мудрым архонтом и импульсивным воином',
@@ -44,6 +47,7 @@ export const pairings: Pairing[] = [
     popularity: 88,
     category: 'popular',
     description: 'Якша-хранитель и путешественник, который помог ему открыться.',
+    image: 'https://cdn.poehali.dev/projects/ab2cfd1e-fa31-425a-bb3b-74822950e4cd/files/de97f4a8-3d2a-4451-8599-a0a103c26572.jpg',
     reasons: [
       'Сяо впервые открывается кому-то за тысячелетия',
       'Путешественник — единственный, кого Сяо зовёт по имени',
@@ -58,6 +62,7 @@ export const pairings: Pairing[] = [
     popularity: 85,
     category: 'popular',
     description: 'Вечная Сёгун и её верная жрица с историей длиной в века.',
+    image: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?w=400',
     reasons: [
       'Столетия дружбы и взаимопонимания',
       'Яэ — единственная, кто может быть честной с Эй',
@@ -72,6 +77,7 @@ export const pairings: Pairing[] = [
     popularity: 80,
     category: 'popular',
     description: 'Бывшие братья с болезненным прошлым.',
+    image: 'https://images.unsplash.com/photo-1618336753974-aae8e04506aa?w=400',
     reasons: [
       'Сложная история их разрыва',
       'Всё ещё заботятся друг о друге несмотря на конфликт',
@@ -86,6 +92,7 @@ export const pairings: Pairing[] = [
     popularity: 75,
     category: 'medium',
     description: 'Капитан пиратов и Тяньцюань — противоположности, которые дополняют друг друга.',
+    image: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=400',
     reasons: [
       'Контраст между свободолюбивой пираткой и деловой женщиной',
       'Взаимное уважение и восхищение',
@@ -100,6 +107,7 @@ export const pairings: Pairing[] = [
     popularity: 70,
     category: 'medium',
     description: 'Генерал-инспектор и лесной страж — старые друзья с академии.',
+    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400',
     reasons: [
       'Учились вместе в академии',
       'Сайно единственный, кто ценит шутки Тигнари',
@@ -114,6 +122,7 @@ export const pairings: Pairing[] = [
     popularity: 82,
     category: 'popular',
     description: 'Соседи по комнате с постоянными спорами и глубокой связью.',
+    image: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=400',
     reasons: [
       'Живут вместе несмотря на постоянные споры',
       'Знают друг друга лучше всех',
@@ -128,6 +137,7 @@ export const pairings: Pairing[] = [
     popularity: 65,
     category: 'medium',
     description: 'Глава клана Камисато и его верный помощник.',
+    image: 'https://images.unsplash.com/photo-1566492031773-4f4e44671857?w=400',
     reasons: [
       'Тома безгранично предан Аято',
       'Аято доверяет Томе больше всех',
@@ -142,6 +152,7 @@ export const pairings: Pairing[] = [
     popularity: 60,
     category: 'medium',
     description: 'Поэт-самурай и искупающий вину странник.',
+    image: 'https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=400',
     reasons: [
       'Оба потеряли близких людей',
       'Тема искупления и прощения',
@@ -156,6 +167,7 @@ export const pairings: Pairing[] = [
     popularity: 35,
     category: 'forgotten',
     description: 'Один из самых забытых пейрингов, хотя у них есть интересная динамика.',
+    image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400',
     reasons: [
       'Оба не совсем люди (якша и искусственное создание)',
       'Тема одиночества и поиска своего места',
@@ -170,6 +182,7 @@ export const pairings: Pairing[] = [
     popularity: 40,
     category: 'forgotten',
     description: 'Два серьёзных и умных человека с разными подходами.',
+    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400',
     reasons: [
       'Оба интеллектуалы в своих областях',
       'Контраст строгого правосудия и холодной логики',
@@ -184,6 +197,7 @@ export const pairings: Pairing[] = [
     popularity: 55,
     category: 'medium',
     description: 'Лучшие друзья детства с противоположными характерами.',
+    image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400',
     reasons: [
       'Дружат с детства',
       'Син Цю постоянно разыгрывает Чун Юня',
@@ -198,6 +212,7 @@ export const pairings: Pairing[] = [
     popularity: 30,
     category: 'forgotten',
     description: 'Два мудрых и древних существа.',
+    image: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400',
     reasons: [
       'Оба связаны с договорами (Чаншэн и Бай Чжу)',
       'Тема жертвенности ради других',
@@ -212,6 +227,7 @@ export const pairings: Pairing[] = [
     popularity: 78,
     category: 'popular',
     description: 'Верховный судья и герцог крепости Меропиде.',
+    image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400',
     reasons: [
       'Взаимное уважение и профессиональное сотрудничество',
       'Их чайные встречи',

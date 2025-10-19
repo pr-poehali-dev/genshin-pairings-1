@@ -36,35 +36,45 @@ export const PairingCard = ({ pairing, onClick }: PairingCardProps) => {
 
   return (
     <Card 
-      className="p-5 cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1 animate-fade-in border-border"
+      className="overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1 animate-fade-in border-border"
       onClick={onClick}
     >
-      <div className="flex items-start justify-between mb-3">
-        <div className="flex-1">
+      <div className="relative h-48 overflow-hidden bg-muted">
+        <img 
+          src={pairing.image} 
+          alt={pairing.name}
+          className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+        />
+        <div className="absolute top-3 right-3">
+          <Badge className={`${badge.variant} border backdrop-blur-sm`} variant="outline">
+            {badge.label}
+          </Badge>
+        </div>
+      </div>
+      
+      <div className="p-5">
+        <div className="mb-3">
           <h3 className="text-xl font-semibold text-foreground mb-1">{pairing.name}</h3>
           <p className="text-sm text-muted-foreground">
             {pairing.characters.join(' × ')}
           </p>
         </div>
-        <Badge className={`${badge.variant} border`} variant="outline">
-          {badge.label}
-        </Badge>
-      </div>
 
-      <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
-        {pairing.description}
-      </p>
+        <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
+          {pairing.description}
+        </p>
 
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <Icon name="Heart" size={18} className={getPopularityColor(pairing.popularity)} />
-          <span className={`text-sm font-medium ${getPopularityColor(pairing.popularity)}`}>
-            {pairing.popularity}%
-          </span>
-        </div>
-        <div className="flex items-center gap-1 text-primary text-sm font-medium">
-          Подробнее
-          <Icon name="ChevronRight" size={16} />
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Icon name="Heart" size={18} className={getPopularityColor(pairing.popularity)} />
+            <span className={`text-sm font-medium ${getPopularityColor(pairing.popularity)}`}>
+              {pairing.popularity}%
+            </span>
+          </div>
+          <div className="flex items-center gap-1 text-primary text-sm font-medium">
+            Подробнее
+            <Icon name="ChevronRight" size={16} />
+          </div>
         </div>
       </div>
     </Card>

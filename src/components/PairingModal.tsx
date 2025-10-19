@@ -44,20 +44,30 @@ export const PairingModal = ({ pairing, open, onOpenChange }: PairingModalProps)
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
-        <DialogHeader>
-          <div className="flex items-start justify-between mb-2">
-            <DialogTitle className="text-2xl font-bold">{pairing.name}</DialogTitle>
-            <Badge className={`${badge.variant} border`} variant="outline">
-              {badge.label}
-            </Badge>
+      <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto p-0">
+        <div className="relative h-64 overflow-hidden bg-muted">
+          <img 
+            src={pairing.image} 
+            alt={pairing.name}
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+          <div className="absolute bottom-4 left-6 right-6">
+            <div className="flex items-start justify-between mb-2">
+              <div>
+                <h2 className="text-3xl font-bold text-white mb-1">{pairing.name}</h2>
+                <p className="text-lg text-white/90">
+                  {pairing.characters.join(' × ')}
+                </p>
+              </div>
+              <Badge className={`${badge.variant} border backdrop-blur-sm`} variant="outline">
+                {badge.label}
+              </Badge>
+            </div>
           </div>
-          <p className="text-lg text-muted-foreground">
-            {pairing.characters.join(' × ')}
-          </p>
-        </DialogHeader>
+        </div>
 
-        <div className="space-y-6 mt-4">
+        <div className="p-6 space-y-6">
           <div className="flex items-center gap-3 p-4 bg-secondary/30 rounded-lg">
             <Icon name="TrendingUp" size={24} className={getPopularityColor(pairing.popularity)} />
             <div>
